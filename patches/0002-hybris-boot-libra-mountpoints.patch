@@ -1,0 +1,29 @@
+diff --git a/fixup-mountpoints b/fixup-mountpoints
+index 8e66c1d..46da78c 100755
+--- a/fixup-mountpoints
++++ b/fixup-mountpoints
+@@ -1817,6 +1817,24 @@ case "$DEVICE" in
+             "$@"
+         ;;
+ 
++    "libra")
++        sed -i \
++            -e 's block/bootdevice/by-name/boot mmcblk0p37 ' \
++            -e 's block/bootdevice/by-name/recovery mmcblk0p38 ' \
++            -e 's block/bootdevice/by-name/persist mmcblk0p39 ' \
++            -e 's block/bootdevice/by-name/system mmcblk0p41 ' \
++            -e 's block/bootdevice/by-name/cache mmcblk0p42 ' \
++            -e 's block/bootdevice/by-name/cust mmcblk0p43 ' \
++            -e 's block/bootdevice/by-name/userdata mmcblk0p44 ' \
++            -e 's block/bootdevice/by-name/misc mmcblk0p13 ' \
++            -e 's block/bootdevice/by-name/modem mmcblk0p36 ' \
++            -e 's block/bootdevice/by-name/modemst1 mmcblk0p28 ' \
++            -e 's block/bootdevice/by-name/modemst2 mmcblk0p29 ' \
++            -e 's block/bootdevice/by-name/bluetooth mmcblk0p14 ' \
++            -e 's block/bootdevice/by-name/aboot mmcblk0p11 ' \
++            "$@"
++        ;;
++
+     "cancro")
+        sed -i \
+             -e 's block/platform/msm_sdcc.1/by-name/DDR mmcblk0p4 ' \

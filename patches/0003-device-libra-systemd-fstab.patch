@@ -1,0 +1,51 @@
+diff --git a/rootdir/fstab.qcom b/rootdir/fstab.qcom
+index 9697992..9b90622 100644
+--- a/rootdir/fstab.qcom
++++ b/rootdir/fstab.qcom
+@@ -7,10 +7,10 @@
+ 
+ #<src>                                  <mnt_point>        <type>  <mnt_flags and options>                         <fs_mgr_flags>
+ /dev/block/bootdevice/by-name/system    /system            ext4    ro,barrier=1                                    wait
+-/dev/block/bootdevice/by-name/userdata  /data              ext4    nosuid,nodev,barrier=1,noauto_da_alloc,discard  wait,check,encryptable=/dev/block/bootdevice/by-name/bk1
+-/dev/block/bootdevice/by-name/userdata  /data              f2fs    rw,noatime,nosuid,nodev,inline_xattr            wait,check,encryptable=/dev/block/bootdevice/by-name/bk1
+-/dev/block/bootdevice/by-name/cache     /cache             ext4    nosuid,nodev,barrier=1                          wait
+-/dev/block/bootdevice/by-name/cache     /cache             f2fs    rw,noatime,nosuid,nodev,inline_xattr            wait,check
++/dev/block/bootdevice/by-name/userdata  /data              ext4    nosuid,nodev,barrier=1,noauto_da_alloc,discard  wait,defaults
++/dev/block/bootdevice/by-name/userdata  /data              f2fs    rw,noatime,nosuid,nodev,inline_xattr            wait,defaults
++/dev/block/bootdevice/by-name/cache     /cache             ext4    nosuid,nodev,barrier=1                          wait,defaults
++/dev/block/bootdevice/by-name/cache     /cache             f2fs    rw,noatime,nosuid,nodev,inline_xattr            wait,defaults
+ /dev/block/bootdevice/by-name/boot      /boot              emmc    defaults                                        defaults
+ /dev/block/bootdevice/by-name/recovery  /recovery          emmc    defaults                                        defaults
+ /dev/block/bootdevice/by-name/misc      /misc              emmc    defaults                                        defaults
+diff --git a/rootdir/init.qcom.rc b/rootdir/init.qcom.rc
+index e1aaa6b..a2b54b2 100644
+--- a/rootdir/init.qcom.rc
++++ b/rootdir/init.qcom.rc
+@@ -534,6 +534,7 @@ service cnss-daemon /system/bin/cnss-daemon -n -l
+     class late_start
+     user system
+     group system inet net_admin wifi
++    disabled
+ 
+ service loc_launcher /system/bin/loc_launcher
+     #loc_launcher will start as root and set its uid to gps
+diff --git a/rootdir/init.target.rc b/rootdir/init.target.rc
+index 3220904..417bb68 100644
+--- a/rootdir/init.target.rc
++++ b/rootdir/init.target.rc
+@@ -133,6 +133,7 @@ service audiod /system/bin/audiod
+    class late_start
+    user system
+    group system
++   disabled
+ 
+ service imsqmidaemon /system/bin/imsqmidaemon
+     class main
+@@ -170,6 +171,7 @@ service ppd /system/bin/mm-pp-daemon
+     user system
+     socket pps stream 0660 system system
+     group system graphics
++    disabled
+ 
+ on property:init.svc.surfaceflinger=stopped
+     stop ppd
