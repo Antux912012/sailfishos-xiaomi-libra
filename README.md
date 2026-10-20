@@ -8,16 +8,39 @@ Hardware Adaptation (HADK) port of Sailfish OS to the **Xiaomi Mi4c (codename `l
 
 ---
 
+## 🎯 Aim of the Project
+
+The primary goal of this project is to develop a complete, stable, and fully reproducible Sailfish OS Hardware Adaptation (HADK) for the **Xiaomi Mi4c (`libra`)**.
+
+By pairing a patched 64-bit Linux 3.10.x kernel with the `hybris-14.1` (Android 7.1.2 / LineageOS 14.1) HAL base and the Jolla Sailfish OS 4.5.x userspace, this port aims to:
+- Deliver an open, privacy-oriented GNU/Linux mobile experience powered by the native Sailfish Silica UI and Wayland compositor.
+- Implement hardware-accelerated 2D/3D graphics and multimedia processing using `libhybris` and Qualcomm Adreno 418 driver glue.
+- Ensure complete hardware coverage: dual-SIM telephony & mobile data (`ofono` / RIL), Wi-Fi (`wpa_supplicant`), Bluetooth (`bluez5`), PulseAudio droid routing, SensorFW, and camera (`droidmedia`).
+- Maintain a fully containerized, reproducible build infrastructure (Platform SDK + Android HAL build containers) so any developer can audit, build, and extend the port.
+
+---
+
+## ⚠️ Disclaimer & Liability Notice
+
+> **IMPORTANT DISCLAIMER:**  
+> This project involves low-level firmware flashing, custom kernel deployment, bootloader interaction, and direct partition manipulation. **The author(s) and contributor(s) are NOT responsible for any damage caused to your device.**
+>
+> This includes, but is not limited to: hard bricks, unbootable states, bootloops, hardware burnout, flash memory degradation, loss of IMEI/baseband/EFS, or complete data loss.
+>
+> Proceed entirely at your own risk. Always make complete, verified raw backups of your eMMC partitions (`boot`, `system`, `data`, `persist`, `modem`, and `EFS`) via TWRP recovery before executing any commands or flashing custom images.
+
+---
+
 ## Device Specifications
 
 | Attribute | Specification |
 | :--- | :--- |
 | **Model** | Xiaomi Mi 4c (`libra`) |
-| **SoC** | Qualcomm MSM8992 Snapdragon 808 (2x Cortex-A57 + 4x Cortex-A53) |
-| **GPU** | Adreno 418 |
-| **RAM** | 2 GB / 3 GB LPDDR3 |
+| **Target Hardware** | **32 GB eMMC 5.0 ROM / 3 GB LPDDR3 RAM** (High Edition) |
+| **SoC** | Qualcomm MSM8992 Snapdragon 808 (2x Cortex-A57 @ 1.82 GHz + 4x Cortex-A53 @ 1.44 GHz) |
+| **GPU** | Qualcomm Adreno 418 @ 600 MHz |
 | **Architecture** | `aarch64` (ARM64-v8a) |
-| **Display** | 1080 x 1920 IPS LCD (441 ppi, pixel ratio 2.0, DPI 440) |
+| **Display** | 1080 x 1920 IPS LCD (441 ppi, pixel ratio 2.0, compositing DPI 440) |
 | **Kernel Base** | Linux 3.10.x (`LineageOS/android_kernel_xiaomi_msm8992`) |
 | **HAL Base** | Android 7.1.2 (LineageOS 14.1 / `hybris-14.1`) |
 

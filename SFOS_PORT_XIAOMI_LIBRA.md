@@ -38,6 +38,7 @@ meta:
 | Key | Value | Notes |
 | :--- | :--- | :--- |
 | **Vendor / Device** | `xiaomi` / `libra` | Xiaomi Mi4c |
+| **Hardware Variant** | 32 GB ROM / 3 GB RAM | High Edition (Physical Target Device) |
 | **SoC** | Qualcomm MSM8992 (Snapdragon 808) | 2x Cortex-A57 + 4x Cortex-A53 |
 | **Arch** | `aarch64` (ARM64-v8a) | 64-bit kernel & userland |
 | **Base Android / Branch** | LineageOS 14.1 (`cm-14.1` / Android 7.1.2) | Branch: `hybris-14.1` |
